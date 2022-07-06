@@ -8,6 +8,10 @@ MrGWASSS Cleans and Visualizes GWAS Summary Statistics
 ```R
 ### Example
 
+# Install the package
+library(devtools)
+install_github("Broccolito/MrGWASSS")
+
 # Load the package
 library("MrGWASSS")
 
