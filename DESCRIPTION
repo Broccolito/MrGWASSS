@@ -5,8 +5,19 @@ Authors@R:
     person("Wanjun", "Gu", , "wagu@health.ucsd.edu", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-7342-7000"))
 Description: MrGWASSS Cleans and Visualizes GWAS Summary Statistics
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.0
+Imports: 
+    BioThingsClient.R (>= 0.99.1),
+    devtools,
+    dplyr,
+    ggplot2,
+    ggpubr,
+    knitr,
+    latex2exp,
+    purrr,
+    writexl
+Remotes:  
+    biothings/BioThingsClient.R

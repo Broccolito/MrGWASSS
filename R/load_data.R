@@ -47,14 +47,20 @@ load_data = function(file_name = "FHS_EA_MRS_5e8_snplist.txt",
   pvalue = as.numeric(raw_data[[pvalue_column]])
   query = paste0("chr", chr, ":g.", pos, ref, ">", alt)
   
-  raw_data = raw_data %>%
-    select(-all_of(marker_name_column), 
-           -all_of(chr_column), 
-           -all_of(pos_column),  
-           -all_of(ref_column),  
-           -all_of(alt_column), 
-           -all_of(pvalue_column))
-  
+  if(by_marker){
+    raw_data = raw_data %>%
+      select(-all_of(marker_name_column), 
+             -all_of(pvalue_column))
+  }else{
+    raw_data = raw_data %>%
+      select(-all_of(marker_name_column), 
+             -all_of(chr_column), 
+             -all_of(pos_column),  
+             -all_of(ref_column),  
+             -all_of(alt_column), 
+             -all_of(pvalue_column))
+  }
+
   data = tibble(
     marker = marker,
     chr = chr,
