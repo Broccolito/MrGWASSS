@@ -14,6 +14,7 @@
 #' @return data, a data frame of the summary statistics
 #' @export
 load_data = function(file_name = "FHS_EA_MRS_5e8_snplist.txt",
+                     by_marker = TRUE,
                      marker_name_column = "SNPID",
                      chr_column = "CHR",
                      pos_column = "POS",
@@ -25,7 +26,7 @@ load_data = function(file_name = "FHS_EA_MRS_5e8_snplist.txt",
   cat("Loading GWAS Statistics...\n")
   raw_data = read.delim(file_name, sep = delimiter)
   
-  if(!is.null(marker_name_column)){
+  if(by_marker){
     marker_name = as.character(raw_data[[marker_name_column]])
     marker_name = strsplit(marker_name, split = "[:]")
     chr = unlist(lapply(marker_name, function(x){x[1]}))
