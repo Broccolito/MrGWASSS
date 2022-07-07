@@ -27,7 +27,7 @@ load_data = function(file_name = "FHS_EA_MRS_5e8_snplist.txt",
   
   if(!is.null(marker_name_column)){
     marker_name = raw_data[[marker_name_column]]
-    marker_name = strsplit(marker_name, split = ":")
+    marker_name = strsplit(marker_name, split = "[:]")
     chr = unlist(lapply(marker_name, function(x){x[1]}))
     pos = unlist(lapply(marker_name, function(x){x[2]}))
     ref = unlist(lapply(marker_name, function(x){x[3]}))
