@@ -6,6 +6,7 @@
 \usage{
 load_data(
   file_name = "FHS_EA_MRS_5e8_snplist.txt",
+  by_marker = TRUE,
   marker_name_column = "SNPID",
   chr_column = "CHR",
   pos_column = "POS",
@@ -17,6 +18,8 @@ load_data(
 }
 \arguments{
 \item{file_name}{The name of the file containing the statistics}
+
+\item{by_marker}{A Boolean variable indicating whether the marker names will be used to specify the variant. If TRUE, marker_name_column has to be non-empty. If FALSE, chr_column, pos_column, ref_column, alt_column have to be non-empty}
 
 \item{marker_name_column}{The column name of the 1KG markers, usually in the format of chr:pos:ref:alt}
 

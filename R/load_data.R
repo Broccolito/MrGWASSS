@@ -3,6 +3,7 @@
 #' This function loads GWAS summary statistics from file
 #'
 #' @param file_name The name of the file containing the statistics
+#' @param by_marker A Boolean variable indicating whether the marker names will be used to specify the variant. If TRUE, marker_name_column has to be non-empty. If FALSE, chr_column, pos_column, ref_column, alt_column have to be non-empty
 #' @param marker_name_column The column name of the 1KG markers, usually in the format of chr:pos:ref:alt
 #' @param chr_column, The column name of the chromosome number column
 #' @param chr_column, The column name of the chromosome number column
@@ -22,10 +23,10 @@ load_data = function(file_name = "FHS_EA_MRS_5e8_snplist.txt",
                      alt_column = "EA",
                      pvalue_column = "p.value",
                      delimiter = " "){
-  
+
   cat("Loading GWAS Statistics...\n")
   raw_data = read.delim(file_name, sep = delimiter)
-  
+
   if(by_marker){
     marker_name = as.character(raw_data[[marker_name_column]])
     marker_name = strsplit(marker_name, split = "[:]")
@@ -39,25 +40,25 @@ load_data = function(file_name = "FHS_EA_MRS_5e8_snplist.txt",
     ref = raw_data[[ref_column]]
     alt = raw_data[[alt_column]]
   }
-  
+
   marker = raw_data[[marker_name_column]]
   chr[chr=="X"] = 23
   chr = as.numeric(chr)
   pos = as.numeric(pos)
   pvalue = as.numeric(raw_data[[pvalue_column]])
   query = paste0("chr", chr, ":g.", pos, ref, ">", alt)
-  
+
   if(by_marker){
     raw_data = raw_data %>%
-      select(-all_of(marker_name_column), 
+      select(-all_of(marker_name_column),
              -all_of(pvalue_column))
   }else{
     raw_data = raw_data %>%
-      select(-all_of(marker_name_column), 
-             -all_of(chr_column), 
-             -all_of(pos_column),  
-             -all_of(ref_column),  
-             -all_of(alt_column), 
+      select(-all_of(marker_name_column),
+             -all_of(chr_column),
+             -all_of(pos_column),
+             -all_of(ref_column),
+             -all_of(alt_column),
              -all_of(pvalue_column))
   }
 
@@ -71,7 +72,7 @@ load_data = function(file_name = "FHS_EA_MRS_5e8_snplist.txt",
     query = query
   ) %>%
     cbind.data.frame(raw_data)
-  
+
   cat("GWAS Statistics Loaded...\n")
   return(data)
 }
