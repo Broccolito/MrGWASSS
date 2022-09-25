@@ -25,7 +25,8 @@ load_data = function(file_name = "FHS_EA_MRS_5e8_snplist.txt",
                      delimiter = " "){
 
   cat("Loading GWAS Statistics...\n")
-  raw_data = read.delim(file_name, sep = delimiter)
+  raw_data = fread(file_name) %>%
+    as.data.frame()
 
   if(by_marker){
     marker_name = as.character(raw_data[[marker_name_column]])

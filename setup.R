@@ -8,6 +8,11 @@ if(!require("dplyr")){
   library("dplyr")
 }
 
+if(!require("data.table")){
+  install.packages("data.table")
+  library("data.table")
+}
+
 if(!require("purrr")){
   install.packages("purrr")
   library("purrr")
