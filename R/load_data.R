@@ -11,7 +11,6 @@
 #' @param ref_column, The column name of the reference allele column
 #' @param alt_column, The column name of the alternative allele column
 #' @param pvalue_column, The column name of the p-value column
-#' @param delimiter, The delimiter used in the file
 #' @return data, a data frame of the summary statistics
 #' @export
 load_data = function(file_name = "FHS_EA_MRS_5e8_snplist.txt",
@@ -21,8 +20,7 @@ load_data = function(file_name = "FHS_EA_MRS_5e8_snplist.txt",
                      pos_column = "POS",
                      ref_column = "NEA",
                      alt_column = "EA",
-                     pvalue_column = "p.value",
-                     delimiter = " "){
+                     pvalue_column = "p.value"){
 
   cat("Loading GWAS Statistics...\n")
   raw_data = fread(file_name) %>%
